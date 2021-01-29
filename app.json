@@ -1,0 +1,12 @@
+{
+  "name": "visitor-management",
+  "displayName": "visitor-management",
+  "expo": {
+    "name": "visitor-management",
+    "slug": "visitor-management",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
