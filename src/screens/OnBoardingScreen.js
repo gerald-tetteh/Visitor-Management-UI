@@ -1,5 +1,12 @@
 import React from "react";
-import { View, StyleSheet, Text, Button, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Button,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
 
 import colors from "../utils/colors";
 import { Pages } from "react-native-pages";
@@ -14,26 +21,26 @@ const OnBoardingScreen = () => {
   const pagesRef = React.createRef();
   return (
     <View style={styles.screenContainer}>
-      <View style={styles.viewPagerContainer}>
-        <TouchableOpacity style={styles.skipButton}>
-          <Text style={styles.skipButtonText}>SKIP</Text>
-        </TouchableOpacity>
-        <Pages
-          ref={pagesRef}
-          containerStyle={styles.pagesStyle}
-          indicatorColor={colors.primary500}
-          indicatorOpacity={0.1}
-        >
-          {images.map((imgSrc, index, __) => {
-            return (
-              <View collapsable={false} key={`${index}`}>
-                <ViewPagerComponent imgSrc={imgSrc} />
-              </View>
-            );
-          })}
-        </Pages>
-      </View>
-      <View style={styles.detailContainer}></View>
+        <View style={styles.viewPagerContainer}>
+          <TouchableOpacity style={styles.skipButton}>
+            <Text style={styles.skipButtonText}>SKIP</Text>
+          </TouchableOpacity>
+          <Pages
+            ref={pagesRef}
+            containerStyle={styles.pagesStyle}
+            indicatorColor={colors.primary500}
+            indicatorOpacity={0.1}
+          >
+            {images.map((imgSrc, index, __) => {
+              return (
+                <View collapsable={false} key={`${index}`}>
+                  <ViewPagerComponent imgSrc={imgSrc} />
+                </View>
+              );
+            })}
+          </Pages>
+        </View>
+        <View style={styles.detailContainer}></View>
     </View>
   );
 };
@@ -42,6 +49,8 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     width: "100%",
+    paddingTop: 35,
+    backgroundColor: colors.lightBlue
   },
   viewPagerContainer: {
     position: "relative",
@@ -55,18 +64,19 @@ const styles = StyleSheet.create({
   },
   skipButton: {
     position: "absolute",
-    top: 40,
+    top: 0,
     right: 31,
   },
   skipButtonText: {
     color: colors.grey800,
     fontSize: 15,
-    fontWeight: "700"
+    fontWeight: "700",
   },
   detailContainer: {
     backgroundColor: colors.white,
     flex: 2,
     width: "100%",
+    paddingBottom: 10,
   },
 });
 
