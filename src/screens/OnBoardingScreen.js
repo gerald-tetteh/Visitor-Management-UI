@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Button, TouchableOpacity } from "react-native";
 
 import colors from "../utils/colors";
 import { Pages } from "react-native-pages";
@@ -11,20 +11,28 @@ const OnBoardingScreen = () => {
     require("../../assets/images/viewPagerScan.png"),
     require("../../assets/images/viewPagerCheckIn.png"),
   ];
-  const viewPager = (
-    <Pages containerStyle={styles.pagesStyle}>
-      {images.map((imgSrc, index, __) => {
-        return (
-          <View collapsable={false} key={`${index + 1}`}>
-            <ViewPagerComponent imgSrc={imgSrc} />
-          </View>
-        );
-      })}
-    </Pages>
-  );
+  const pagesRef = React.createRef();
   return (
     <View style={styles.screenContainer}>
-      <View style={styles.viewPagerContainer}>{viewPager}</View>
+      <View style={styles.viewPagerContainer}>
+        <TouchableOpacity style={styles.skipButton}>
+          <Text style={styles.skipButtonText}>SKIP</Text>
+        </TouchableOpacity>
+        <Pages
+          ref={pagesRef}
+          containerStyle={styles.pagesStyle}
+          indicatorColor={colors.primary500}
+          indicatorOpacity={0.1}
+        >
+          {images.map((imgSrc, index, __) => {
+            return (
+              <View collapsable={false} key={`${index}`}>
+                <ViewPagerComponent imgSrc={imgSrc} />
+              </View>
+            );
+          })}
+        </Pages>
+      </View>
       <View style={styles.detailContainer}></View>
     </View>
   );
@@ -36,6 +44,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   viewPagerContainer: {
+    position: "relative",
     flex: 3,
     width: "100%",
     justifyContent: "center",
@@ -43,6 +52,16 @@ const styles = StyleSheet.create({
   },
   pagesStyle: {
     marginTop: "35%",
+  },
+  skipButton: {
+    position: "absolute",
+    top: 40,
+    right: 31,
+  },
+  skipButtonText: {
+    color: colors.grey800,
+    fontSize: 15,
+    fontWeight: "700"
   },
   detailContainer: {
     backgroundColor: colors.white,
