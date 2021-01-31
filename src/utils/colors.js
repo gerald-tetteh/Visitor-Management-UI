@@ -3,7 +3,8 @@ const colors = {
   neutralGrey: "#323F4B",
   white: "#E5E5E5",
   primary500: "#2F80ED",
-  grey800: "#323F4B"
+  grey800: "#323F4B",
+  primary900: "#00172E",
 };
 
 export default colors;
